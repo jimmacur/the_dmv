@@ -59,13 +59,13 @@ RSpec.describe Facility do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
       @facility.register_vehicle(@cruz)
       expect(@facility.registered_vehicles).to eq([@cruz])
-
     end
   end
 
   describe '#registration date' do
     it 'can assign a registration date' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
+      @facility.add_service('Vehicle Registration')
       @facility.register_vehicle(@cruz)
       expect(@cruz.registration_date).to eq(Date.today)
     end
@@ -81,6 +81,7 @@ RSpec.describe Facility do
   describe '#plate type' do
     it 'can assign plate type' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
+      @facility.add_service('Vehicle Registration')
       @facility.register_vehicle(@cruz)
       expect(@cruz.plate_type).to eq(:regular)
     end
@@ -89,6 +90,7 @@ RSpec.describe Facility do
   describe '#collect fees' do
     it 'can collect fees upon registration' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
+      @facility.add_service('Vehicle Registration')
       @facility.register_vehicle(@cruz)
       expect(@facility.collected_fees).to eq(100)
     end

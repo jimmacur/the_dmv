@@ -28,20 +28,29 @@ class Facility
     end
   end
 
-  
+  def allow_service(service)
+    if has_service?(service)
+      yield
+    else
+      false
+    end
+  end
 
   def register_vehicle(vehicle)
-    @registered_vehicles << vehicle
-    vehicle.set_date
-    vehicle.give_plate
-    if vehicle.plate_type == :ev
-      @collected_fees += 200
-    elsif vehicle.plate_type == :antique
-      @collected_fees += 25
-    else
-      @collected_fees += 100
+    allow_service('Vehicle Registration') do
+      @registered_vehicles << vehicle
+      vehicle.set_date
+      vehicle.give_plate
+      if vehicle.plate_type == :ev
+       @collected_fees += 200
+      elsif vehicle.plate_type == :antique
+        @collected_fees += 25
+      else
+        @collected_fees += 100
+      end
+      return [vehicle]
     end
-    return [vehicle]
-   end
+
+  end
 
 end
