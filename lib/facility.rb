@@ -25,9 +25,17 @@ class Facility
     vehicle.set_date
     vehicle.give_plate
     return [vehicle]
-
-    # vehicle added registered vehicles list in facility
     # collected fees changes based on plate_type
   end
+
+  # def get_fees
+  #   if @engine == :ev
+  #     @collect_fees = 200
+  #   elsif @engine == :ice && Date.today.year - @year > 25
+  #     @collect_fees = 25
+  #   else
+  #     @collect_fees = 100
+  #   end
+  # end
 
 end

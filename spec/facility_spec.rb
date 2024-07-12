@@ -80,6 +80,13 @@ RSpec.describe Facility do
     end
   end
 
+  describe 'collect fees' do
+    it 'can collect fees upon registration' do
+      @facility.register_vehicle(@cruz)
+      expect(@facility.get_fees).to eq(100)
+    end
+  end
+
 end
 
 # require'pry';binding.pry

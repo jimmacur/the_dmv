@@ -32,8 +32,8 @@ class Vehicle
   end
 
   def give_plate
-    if @engine == :ev
-      @plate_type = :regular
+    if engine == :ev
+      @plate_type = :ev
     elsif @engine == :ice && Date.today.year - @year > 25
       @plate_type = :antique
     else
