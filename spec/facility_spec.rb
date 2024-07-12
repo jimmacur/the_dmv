@@ -32,6 +32,17 @@ RSpec.describe Facility do
       expect(@facility.has_service?('Vehicle Registration')).to eq(false)
     end
   end
+
+  describe '#allow_service' do
+    it 'executes the block and returns its result' do
+      @facility.add_service('Vehicle Registration')
+      @facility.has_service?('Vehicle Registration')
+      # require'pry';binding.pry
+      expect(@facility.allow_service('Vehicle Registration'){'Registered'}).to eq('Registered')     
+    end
+  end
+
+
   
   describe '#registered vehicles' do
     it 'can list vehicles that have been registered at a facility' do
@@ -95,9 +106,6 @@ RSpec.describe Facility do
       expect(@facility.collected_fees).to eq(100)
     end
   end
-
-
-
 end
 
 # require'pry';binding.pry
