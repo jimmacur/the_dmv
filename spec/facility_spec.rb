@@ -34,7 +34,7 @@ RSpec.describe Facility do
   end
 
   describe '#allow_service' do
-    it 'executes the block and returns its result' do
+    it 'allows a service that has been added' do
       @facility.add_service('Vehicle Registration')
       @facility.has_service?('Vehicle Registration')
       # require'pry';binding.pry
@@ -42,8 +42,12 @@ RSpec.describe Facility do
     end
   end
 
+  describe '#allow_service' do
+  it 'doesnt allow a service that hasnt been added' do
+    expect(@facility.allow_service('Vehicle Registration'){'Registered'}).to eq(false)     
+  end
+end
 
-  
   describe '#registered vehicles' do
     it 'can list vehicles that have been registered at a facility' do
       expect(@facility.registered_vehicles).to eq([])
