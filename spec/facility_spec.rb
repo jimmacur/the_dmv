@@ -5,7 +5,13 @@ require 'spec_helper'
 RSpec.describe Facility do
   before(:each) do
     @facility = Facility.new({name: 'DMV Tremont Branch', address: '2855 Tremont Place Suite 118 Denver CO 80205', phone: '(720) 865-4600'})
+    @facility_2 = Facility.new({name: 'DMV Northeast Branch', address: '4685 Peoria Street Suite 101 Denver CO 80239', phone: '(720) 865-4600'})
+    @facility_3 = Facility.new({name: 'DMV Northwest Branch', address: '3698 W. 44th Avenue Denver CO 80211', phone: '(720) 865-4600'})
+    @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
+    @bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
+    @camaro = Vehicle.new({vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice} )
   end
+
   describe '#initialize' do
     it 'can initialize' do
       expect(@facility).to be_an_instance_of(Facility)
@@ -40,13 +46,24 @@ RSpec.describe Facility do
 
   describe 'register_vehicle' do
     it 'can register a vehicle' do
-      expect(@facility.register_vehicle(@cruz)).to eq(@cruz)
+      @facility.add_service('Vehicle Registration')
+      expect(@facility.register_vehicle(@cruz)).to eq([@cruz])
+    end
+  end
+
+  describe 'adds to registered vehicles' do
+    it 'can add to registered vehicles array' do
+      @facility.add_service('Vehicle Registration')
+      @facility.register_vehicle(@cruz)
+      expect(@facility.registered_vehicles).to eq([@cruz])
+      # require'pry';binding.pry
     end
   end
 
   # describe 'registration date' do
-  #   it 'can assign a registration date' do
-  #     expect(@facility.register_vehicle(@cruz)).to eq(@cruz)
+  #   xit 'can assign a registration date' do
+  #     @facility.register_vehicle(@cruz)
+  #     expect(@cruz[:registration_date]).to eq("2023-01-12")
   #   end
   # end
 

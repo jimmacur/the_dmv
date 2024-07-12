@@ -9,7 +9,6 @@ class Vehicle
               :registration_date
 
   def initialize(vehicle_details)
-    # vehicle_details = Hash.new
     @vin = vehicle_details[:vin]
     @year = vehicle_details[:year]
     @make = vehicle_details[:make]
@@ -24,5 +23,9 @@ class Vehicle
 
   def electric_vehicle?
     @engine == :ev
+  end
+
+  def set_date
+    @registration_date = Date.today
   end
 end
