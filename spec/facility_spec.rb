@@ -56,15 +56,30 @@ RSpec.describe Facility do
       @facility.add_service('Vehicle Registration')
       @facility.register_vehicle(@cruz)
       expect(@facility.registered_vehicles).to eq([@cruz])
-      # require'pry';binding.pry
+
     end
   end
 
-  # describe 'registration date' do
-  #   xit 'can assign a registration date' do
-  #     @facility.register_vehicle(@cruz)
-  #     expect(@cruz[:registration_date]).to eq("2023-01-12")
-  #   end
-  # end
+  describe 'registration date' do
+    it 'can assign a registration date' do
+      @facility.register_vehicle(@cruz)
+      expect(@cruz.registration_date).to eq(Date.today)
+    end
+  end
+
+  describe 'nil plate type' do
+    it 'plate type defaults to nil' do
+      expect(@cruz.plate_type).to eq(nil)
+    end
+  end
+
+  describe 'plate type' do
+    it 'can assign plate type' do
+      @facility.register_vehicle(@cruz)
+      expect(@cruz.plate_type).to eq(:regular)
+    end
+  end
 
 end
+
+# require'pry';binding.pry

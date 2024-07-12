@@ -23,9 +23,9 @@ class Facility
   def register_vehicle(vehicle)
     @registered_vehicles << vehicle
     vehicle.set_date
+    vehicle.give_plate
     return [vehicle]
-  # plate_type is set
-    # registration date is set
+
     # vehicle added registered vehicles list in facility
     # collected fees changes based on plate_type
   end
