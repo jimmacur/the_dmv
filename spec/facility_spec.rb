@@ -31,4 +31,23 @@ RSpec.describe Facility do
       expect(@facility.registered_vehicles).to eq([])
     end
   end
+
+  describe 'collected fees' do
+    it 'shows that collected fees defaults at 0' do
+      expect(@facility.collected_fees).to eq(0)
+    end
+  end
+
+  # describe 'register_vehicle' do
+  #   it 'can register a vehicle' do
+  #     expect(@facility.register_vehicle(@cruz)).to eq(@cruz)
+  #   end
+  # end
+
+  # describe 'registration date' do
+  #   it 'can assign a registration date' do
+  #     expect(@facility.register_vehicle(@cruz)).to eq(@cruz)
+  #   end
+  # end
+
 end
