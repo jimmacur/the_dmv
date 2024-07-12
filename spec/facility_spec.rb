@@ -38,11 +38,11 @@ RSpec.describe Facility do
     end
   end
 
-  # describe 'register_vehicle' do
-  #   it 'can register a vehicle' do
-  #     expect(@facility.register_vehicle(@cruz)).to eq(@cruz)
-  #   end
-  # end
+  describe 'register_vehicle' do
+    it 'can register a vehicle' do
+      expect(@facility.register_vehicle(@cruz)).to eq(@cruz)
+    end
+  end
 
   # describe 'registration date' do
   #   it 'can assign a registration date' do
