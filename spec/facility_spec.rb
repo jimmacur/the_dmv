@@ -26,6 +26,12 @@ RSpec.describe Facility do
       expect(@facility.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])
     end
   end
+
+  describe '#has service?' do
+    it 'can check if a facility has a service' do
+      expect(@facility.has_service?('Vehicle Registration')).to eq(false)
+    end
+  end
   
   describe '#registered vehicles' do
     it 'can list vehicles that have been registered at a facility' do
@@ -33,13 +39,13 @@ RSpec.describe Facility do
     end
   end
 
-  describe 'collected fees' do
+  describe '#collected fees' do
     it 'shows that collected fees defaults at 0' do
       expect(@facility.collected_fees).to eq(0)
     end
   end
 
-  describe 'register_vehicle' do
+  describe '#register_vehicle' do
     it 'can register a vehicle' do
       @facility.add_service('Vehicle Registration')
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
@@ -47,7 +53,7 @@ RSpec.describe Facility do
     end
   end
 
-  describe 'adds to registered vehicles' do
+  describe '#registered vehicles' do
     it 'can add to registered vehicles array' do
       @facility.add_service('Vehicle Registration')
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
@@ -57,7 +63,7 @@ RSpec.describe Facility do
     end
   end
 
-  describe 'registration date' do
+  describe '#registration date' do
     it 'can assign a registration date' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
       @facility.register_vehicle(@cruz)
@@ -65,14 +71,14 @@ RSpec.describe Facility do
     end
   end
 
-  describe 'nil plate type' do
+  describe '#plate type' do
     it 'plate type defaults to nil' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
       expect(@cruz.plate_type).to eq(nil)
     end
   end
 
-  describe 'plate type' do
+  describe '#plate type' do
     it 'can assign plate type' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
       @facility.register_vehicle(@cruz)
@@ -80,13 +86,15 @@ RSpec.describe Facility do
     end
   end
 
-  describe 'collect fees' do
+  describe '#collect fees' do
     it 'can collect fees upon registration' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
       @facility.register_vehicle(@cruz)
       expect(@facility.collected_fees).to eq(100)
     end
   end
+
+
 
 end
 

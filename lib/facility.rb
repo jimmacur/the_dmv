@@ -20,6 +20,16 @@ class Facility
     @services << service
   end
 
+  def has_service?(service)
+    if @services.include?(service)
+      true
+    else
+      false
+    end
+  end
+
+  
+
   def register_vehicle(vehicle)
     @registered_vehicles << vehicle
     vehicle.set_date
@@ -34,7 +44,4 @@ class Facility
     return [vehicle]
    end
 
-   def has_service?
-      @services
-   end
 end
