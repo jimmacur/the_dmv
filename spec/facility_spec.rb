@@ -112,11 +112,21 @@ end
     end
   end
 
-  describe '#administer written test'
+  describe '#administer written test' do
     it 'administer written test defaults to false' do
       registrant_1 = Registrant.new('Bruce', 18, true )
       expect(@facility.administer_written_test(@registrant)).to eq(false)
     end
+  end
+
+  describe '#administer written test' do
+    it 'administer written test to true when service added' do
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      @facility.add_service('Written Test')
+      require'pry';binding.pry
+      expect(@facility.administer_written_test(@registrant)).to eq(true)
+    end
+  end
 
 end
 
