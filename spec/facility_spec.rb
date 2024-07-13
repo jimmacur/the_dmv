@@ -126,6 +126,15 @@ RSpec.describe Facility do
     end
   end
 
+  describe '#administer_written_test' do
+  it 'doesnt administers written test without permit' do
+    registrant_2 = Registrant.new('Penny', 16 )
+    @facility.add_service('Written Test')
+    expect(@facility.administer_written_test(registrant_2)).to eq(false)
+    expect(registrant_2.license_data[:written]).to eq(false)
+  end
+end
+
   describe 'no written test for under 16' do
     it 'doesnt allow a written test for people under 16 years old' do
       registrant_3 = Registrant.new('Tucker', 15 )
@@ -134,6 +143,9 @@ RSpec.describe Facility do
       expect(registrant_3.license_data[:written]).to eq(false)
     end
   end
+
+
+
 end
 
 # require'pry';binding.pry
