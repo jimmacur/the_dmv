@@ -169,7 +169,17 @@ end
     end
   end
 
+  describe 'renew license' do
+    it 'renews licenses' do
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      @facility.add_service('Written Test')
+      @facility.add_service('Road Test')
+      @facility.add_service('Renew License')
+      expect(@facility.renew_drivers_license(registrant_1)).to eq(true)
+    end
+  end
   # registrant_1 = Registrant.new('Bruce', 18, true )
+  # registrant_2 = Registrant.new('Penny', 16 )
   # registrant_3 = Registrant.new('Tucker', 15 )
 end
 

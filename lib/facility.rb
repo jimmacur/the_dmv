@@ -65,6 +65,11 @@ class Facility
     end
   end
 
-
+  def renew_drivers_license(registrant)
+    allow_service('Renew License') do
+      registrant.license_data[:license] = true
+      true
+    end
+  end
 
 end
