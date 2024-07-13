@@ -1,8 +1,7 @@
 require 'spec_helper'
 
-# require'pry';binding.pry
-
 RSpec.describe Facility do
+  
   before(:each) do
     @facility = Facility.new({name: 'DMV Tremont Branch', address: '2855 Tremont Place Suite 118 Denver CO 80205', phone: '(720) 865-4600'})
   end
@@ -43,10 +42,10 @@ RSpec.describe Facility do
   end
 
   describe '#allow_service' do
-  it 'doesnt allow a service that hasnt been added' do
-    expect(@facility.allow_service('Vehicle Registration'){'Registered'}).to eq(false)     
+    it 'doesnt allow a service that hasnt been added' do
+      expect(@facility.allow_service('Vehicle Registration'){'Registered'}).to eq(false)     
+    end
   end
-end
 
   describe '#registered vehicles' do
     it 'can list vehicles that have been registered at a facility' do
@@ -110,6 +109,78 @@ end
       expect(@facility.collected_fees).to eq(100)
     end
   end
+
+  describe '#administer written test' do
+    it 'administer written test defaults to false' do
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      expect(@facility.administer_written_test(registrant_1)).to eq(false)
+    end
+  end
+
+  describe '#administer_written_test' do
+    it 'administers written test to true when service added' do
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      @facility.add_service('Written Test')
+      expect(@facility.administer_written_test(registrant_1)).to eq(true)
+      expect(registrant_1.license_data[:written]).to eq(true)
+    end
+  end
+
+  describe '#administer_written_test' do
+    it 'doesnt administers written test without permit' do
+    registrant_2 = Registrant.new('Penny', 16 )
+    @facility.add_service('Written Test')
+    expect(@facility.administer_written_test(registrant_2)).to eq(false)
+    expect(registrant_2.license_data[:written]).to eq(false)
+    registrant_2.earn_permit
+    expect(@facility.administer_written_test(registrant_2)).to eq(true)
+    expect(registrant_2.license_data[:written]).to eq(true)
+    end
+  end
+
+  describe 'no written test for under 16' do
+    it 'doesnt allow a written test for people under 16 years old' do
+      registrant_3 = Registrant.new('Tucker', 15 )
+      @facility.add_service('Written Test')
+      registrant_3.earn_permit
+      expect(@facility.administer_written_test(registrant_3)).to eq(false)
+      expect(registrant_3.license_data[:written]).to eq(false)
+    end
+  end
+
+  describe 'road test' do
+    it 'administers a road test' do
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      @facility.add_service('Written Test')
+      @facility.add_service('Road Test')
+      @facility.administer_written_test(registrant_1)
+      expect(@facility.administer_road_test(registrant_1)).to eq(true)
+    end
+  end
+
+  describe 'road test' do
+    it 'requires a permit and written test to do road test' do
+      registrant_3 = Registrant.new('Tucker', 15 )
+      @facility.add_service('Written Test')
+      @facility.add_service('Road Test')
+      @facility.administer_written_test(registrant_3)
+      expect(@facility.administer_road_test(registrant_3)).to eq(false)
+      expect(registrant_3.license_data[:license]).to eq(false)
+    end
+  end
+
+  describe 'renew license' do
+    it 'renews licenses' do
+      registrant_2 = Registrant.new('Penny', 16 )
+      registrant_2.earn_permit
+      @facility.add_service('Written Test')
+      @facility.add_service('Road Test')
+      @facility.add_service('Renew License')
+      @facility.administer_written_test(registrant_2)
+      @facility.administer_road_test(registrant_2)
+      expect(@facility.renew_drivers_license(registrant_2)).to eq(true)
+      expect(registrant_2.license_data[:license]).to eq(true)
+    end
+  end
 end
 
-# require'pry';binding.pry
