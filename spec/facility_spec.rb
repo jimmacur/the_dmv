@@ -152,8 +152,20 @@ end
     it 'administers a road test' do
       registrant_1 = Registrant.new('Bruce', 18, true )
       @facility.add_service('Written Test')
+      @facility.add_service('Road Test')
       @facility.administer_written_test(registrant_1)
       expect(@facility.administer_road_test(registrant_1)).to eq(true)
+    end
+  end
+
+  describe 'road test' do
+    it 'requires a permit and written test to do road test' do
+      registrant_3 = Registrant.new('Tucker', 15 )
+      @facility.add_service('Written Test')
+      @facility.add_service('Road Test')
+      @facility.administer_written_test(registrant_3)
+      expect(@facility.administer_road_test(registrant_3)).to eq(false)
+      expect(registrant_3.license_data[:license]).to eq(false)
     end
   end
 
