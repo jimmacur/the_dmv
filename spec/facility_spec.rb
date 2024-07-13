@@ -150,11 +150,15 @@ end
 
   describe 'road test' do
     it 'administers a road test' do
-      registrant_3 = Registrant.new('Tucker', 15 )
-      expect(@facility.administer_road_test(registrant_3)).to eq(false)
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      @facility.add_service('Written Test')
+      @facility.administer_written_test(registrant_1)
+      expect(@facility.administer_road_test(registrant_1)).to eq(true)
     end
   end
 
+  # registrant_1 = Registrant.new('Bruce', 18, true )
+  # registrant_3 = Registrant.new('Tucker', 15 )
 end
 
 # require'pry';binding.pry

@@ -57,7 +57,9 @@ class Facility
   end
 
   def  administer_road_test(registrant)
-    return false
+    return false unless registrant.permit? == true
+    return false unless registrant.license_data[:written] == true
+    return true
   end
 
 end
