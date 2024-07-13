@@ -32,6 +32,8 @@ class Facility
     end
   end
 
+
+
   def register_vehicle(vehicle)
     allow_service('Vehicle Registration') do
       @registered_vehicles << vehicle
@@ -49,6 +51,8 @@ class Facility
   end
 
   def administer_written_test(registrant)
+    return false unless registrant.age > 15
+    
     allow_service('Written Test') do
       registrant.license_data[:written] = true
     end
