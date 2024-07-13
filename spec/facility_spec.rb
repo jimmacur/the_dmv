@@ -142,12 +142,18 @@ end
     it 'doesnt allow a written test for people under 16 years old' do
       registrant_3 = Registrant.new('Tucker', 15 )
       @facility.add_service('Written Test')
+      registrant_3.earn_permit
       expect(@facility.administer_written_test(registrant_3)).to eq(false)
       expect(registrant_3.license_data[:written]).to eq(false)
     end
   end
 
-
+  describe 'road test' do
+    it 'administers a road test' do
+      registrant_3 = Registrant.new('Tucker', 15 )
+      expect(@facility.administer_road_test(registrant_3)).to eq(false)
+    end
+  end
 
 end
 

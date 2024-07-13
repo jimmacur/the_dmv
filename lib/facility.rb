@@ -32,8 +32,6 @@ class Facility
     end
   end
 
-
-
   def register_vehicle(vehicle)
     allow_service('Vehicle Registration') do
       @registered_vehicles << vehicle
@@ -56,6 +54,10 @@ class Facility
     allow_service('Written Test') do
       registrant.license_data[:written] = true
     end
+  end
+
+  def  administer_road_test(registrant)
+    return false
   end
 
 end
