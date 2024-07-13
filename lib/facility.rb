@@ -51,4 +51,5 @@ class Facility
       return [vehicle]
     end
   end
+  
 end
