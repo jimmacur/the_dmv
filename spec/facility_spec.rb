@@ -111,6 +111,13 @@ end
       expect(@facility.collected_fees).to eq(100)
     end
   end
+
+  describe '#administer written test'
+    it 'administer written test defaults to false' do
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      expect(@facility.administer_written_test(@registrant)).to eq(false)
+    end
+
 end
 
 # require'pry';binding.pry

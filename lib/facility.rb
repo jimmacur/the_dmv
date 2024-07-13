@@ -51,5 +51,10 @@ class Facility
       return [vehicle]
     end
   end
-  
+
+  def administer_written_test(registrant)
+    allow_service('Written Test') do
+    end
+  end
+
 end
