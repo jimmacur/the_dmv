@@ -21,12 +21,8 @@ class Facility
   end
 
   def has_service?(service)
-    if @services.include?(service)
-      true
-    else
-      false
-    end
-  end
+    @services.include?(service)
+   end
 
   def allow_service(service)
     if has_service?(service)
@@ -54,6 +50,7 @@ class Facility
 
   def administer_written_test(registrant)
     allow_service('Written Test') do
+      registrant.license_data[:written] = true
     end
   end
 

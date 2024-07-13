@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-# require'pry';binding.pry
-
 RSpec.describe Facility do
   
   before(:each) do
@@ -115,16 +113,17 @@ end
   describe '#administer written test' do
     it 'administer written test defaults to false' do
       registrant_1 = Registrant.new('Bruce', 18, true )
-      expect(@facility.administer_written_test(@registrant)).to eq(false)
+      expect(@facility.administer_written_test(registrant_1)).to eq(false)
     end
   end
 
-  describe '#administer written test' do
-    it 'administer written test to true when service added' do
+  describe '#administer_written_test' do
+    it 'administers written test to true when service added' do
       registrant_1 = Registrant.new('Bruce', 18, true )
       @facility.add_service('Written Test')
-      require'pry';binding.pry
-      expect(@facility.administer_written_test(@registrant)).to eq(true)
+      @facility.has_service?('Written Test')
+      expect(@facility.administer_written_test(registrant_1)).to eq(true)
+      expect(registrant_1.license_data[:written]).to eq(true)
     end
   end
 
