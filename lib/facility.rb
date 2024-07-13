@@ -66,8 +66,10 @@ class Facility
   end
 
   def renew_drivers_license(registrant)
+    return false unless registrant.license_data[:license]
     allow_service('Renew License') do
       registrant.license_data[:license] = true
+      registrant.license_data[:renewed] = true
       true
     end
   end

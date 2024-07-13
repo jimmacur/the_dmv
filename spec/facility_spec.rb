@@ -175,7 +175,10 @@ end
       @facility.add_service('Written Test')
       @facility.add_service('Road Test')
       @facility.add_service('Renew License')
+      @facility.administer_written_test(registrant_1)
+      @facility.administer_road_test(registrant_1)
       expect(@facility.renew_drivers_license(registrant_1)).to eq(true)
+      expect(registrant_1.license_data[:license]).to eq(true)
     end
   end
   # registrant_1 = Registrant.new('Bruce', 18, true )
