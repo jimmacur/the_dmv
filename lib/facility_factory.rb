@@ -1,5 +1,4 @@
 class FacilityFactory
-    
     def initialize
     end
 

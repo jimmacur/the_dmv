@@ -34,5 +34,4 @@ RSpec.describe VehicleFactory do
         expect(vehicles[0].engine).not_to eq("")
       end
     end
-
 end

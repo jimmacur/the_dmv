@@ -39,7 +39,4 @@ RSpec.describe FacilityFactory do
             expect(facility[0].phone).not_to eq("")
         end
     end
-
-
-
 end

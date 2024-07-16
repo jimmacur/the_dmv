@@ -62,7 +62,6 @@ class Facility
     
     allow_service('Road Test') do
       registrant.license_data[:license] = true
-      true
     end
   end
 
@@ -71,7 +70,6 @@ class Facility
     
     allow_service('Renew License') do
       registrant.license_data[:renewed] = true
-      true
     end
   end
 
