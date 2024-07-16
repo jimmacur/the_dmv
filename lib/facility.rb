@@ -32,7 +32,7 @@ class Facility
   end
 
   def register_vehicle(vehicle)
-    allow_service('Vehicle Registration') do
+    if 
       @registered_vehicles << vehicle
       vehicle.set_date
       vehicle.give_plate
@@ -44,7 +44,22 @@ class Facility
         @collected_fees += 100
       end
       return [vehicle]
+    else 
+      return false
     end
+    # allow_service('Vehicle Registration') do
+    #   @registered_vehicles << vehicle
+    #   vehicle.set_date
+    #   vehicle.give_plate
+    #   if vehicle.plate_type == :ev
+    #    @collected_fees += 200
+    #   elsif vehicle.plate_type == :antique
+    #     @collected_fees += 25
+    #   else
+    #     @collected_fees += 100
+    #   end
+    #   return [vehicle]
+    # end
   end
 
   def administer_written_test(registrant)
