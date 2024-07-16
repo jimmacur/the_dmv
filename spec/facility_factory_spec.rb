@@ -19,4 +19,24 @@ RSpec.describe FacilityFactory do
         end
     end
 
+    describe 'creates facilities' do
+        it 'creates a Facility object from each facility' do
+            facility = @facility.create_ny_facility(@new_york_facilities)
+
+            expect(facility).to all(be_an_instance_of(Facility))
+        end
+
+        it 'each facility has data in each category' do
+            facility = @facility.create_ny_facility(@new_york_facilities)
+            expect(facility[0].name).to be_an_instance_of(String)
+            expect(facility[0].name).not_to eq("")
+            expect(facility[0].address).to be_an_instance_of(String)
+            expect(facility[0].address).not_to eq("")
+            expect(facility[0].phone).to be_an_instance_of(String)
+            expect(facility[0].phone).not_to eq("")
+        end
+    end
+
+
+
 end

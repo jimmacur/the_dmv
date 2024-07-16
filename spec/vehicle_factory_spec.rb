@@ -13,7 +13,7 @@ RSpec.describe VehicleFactory do
   end
 
   describe '#create_vehicles' do
-    it 'sorts info into each method type' do
+    it 'sorts vehicle data into each type' do
         vehicles = @factory.create_vehicles(@wa_ev_registrations) 
         
         expect(vehicles).to all(be_an_instance_of(Vehicle)) 
