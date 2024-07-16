@@ -47,23 +47,11 @@ class Facility
     else 
       return false
     end
-    # allow_service('Vehicle Registration') do
-    #   @registered_vehicles << vehicle
-    #   vehicle.set_date
-    #   vehicle.give_plate
-    #   if vehicle.plate_type == :ev
-    #    @collected_fees += 200
-    #   elsif vehicle.plate_type == :antique
-    #     @collected_fees += 25
-    #   else
-    #     @collected_fees += 100
-    #   end
-    #   return [vehicle]
-    # end
   end
 
   def administer_written_test(registrant)
     return false unless registrant.age > 15 && registrant.permit?
+
     allow_service('Written Test') do
       registrant.license_data[:written] = true
     end
@@ -71,6 +59,7 @@ class Facility
 
   def  administer_road_test(registrant)
     return false unless registrant.permit? && registrant.license_data[:written]
+    
     allow_service('Road Test') do
       registrant.license_data[:license] = true
       true
@@ -79,6 +68,7 @@ class Facility
 
   def renew_drivers_license(registrant)
     return false unless registrant.license_data[:license]
+    
     allow_service('Renew License') do
       registrant.license_data[:renewed] = true
       true

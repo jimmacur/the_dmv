@@ -1,8 +1,6 @@
 
 class Registrant 
-    attr_reader :name, 
-                :age, 
-                :permit
+    attr_reader :name, :age, :permit
 
     attr_accessor   :license_data
 
@@ -10,11 +8,7 @@ class Registrant
         @name = name
         @age = age
         @permit = permit
-        @license_data = {
-            written: false,
-            license: false,
-            renewed: false
-            }
+        @license_data = { written: false, license: false, renewed: false }
     end
 
     def permit?
