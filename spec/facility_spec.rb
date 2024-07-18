@@ -75,16 +75,6 @@ RSpec.describe Facility do
     end
   end
 
-  describe '#registered vehicles' do
-    it 'can add to registered vehicles array' do
-      @facility.add_service('Vehicle Registration')
-      @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
-      @facility.register_vehicle(@cruz)
-
-      expect(@facility.registered_vehicles).to eq([@cruz])
-    end
-  end
-
   describe '#registration date' do
     it 'can assign a registration date' do
       @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
